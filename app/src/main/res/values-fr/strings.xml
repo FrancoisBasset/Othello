@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Othello</string>
+    <string name="newGame_button">Nouvelle partie</string>
+    <string name="lastGames_button">Dernières parties</string>
+    <string name="localGame_button">Partie locale</string>
+    <string name="randomPlayer_button">Joueur aléatoire</string>
+    <string name="myFriends_label">Mes amis</string>
+</resources>
