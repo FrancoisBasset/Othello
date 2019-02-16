@@ -35,5 +35,7 @@ public class NewGameActivity extends AppCompatActivity {
         intent.putExtra("mode", mode);
 
         startActivity(intent);
+
+
     }
 }

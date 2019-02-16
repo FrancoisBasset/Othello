@@ -1,4 +1,5 @@
 <resources>
+
     <style name="Othello" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:colorBackground">@color/color_background</item>
@@ -18,4 +19,8 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">20dp</item>
     </style>
+
+    <style name="Othello.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Othello.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

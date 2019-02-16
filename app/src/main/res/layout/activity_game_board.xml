@@ -25,7 +25,8 @@
         android:textColor="@android:color/black"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/whiteDisk_label" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,7 +37,8 @@
         android:textColor="@android:color/black"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        tools:text="@string/blackDisk_label" />
 
     <TextView
         android:id="@+id/whitePossession_label"

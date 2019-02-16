@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">Othello</string>
+    <string name="app_name" translatable="false">Othello</string>
     <string name="newGame_button">New game</string>
     <string name="lastGames_button">Last games</string>
     <string name="localGame_button">Local game</string>
     <string name="randomPlayer_button">Random player</string>
     <string name="myFriends_label">My friends</string>
+    <string name="blackDisk_label">Black disk :</string>
+    <string name="lastGames_label">Last games :</string>
+    <string name="whiteDisk_label">White disk :</string>
 </resources>

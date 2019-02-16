@@ -1,7 +1,6 @@
 package com.groupe17.othello;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +17,10 @@ public class DiskAdapter extends BaseAdapter {
         this.context = context;
 
         white_imageView = new ImageButton(context);
-        white_imageView.setImageURI(Uri.parse("drawable/white.png"));
+        white_imageView.setImageURI(Uri.parse("drawable/white_disk.png"));
 
         black_imageView = new ImageButton(context);
-        black_imageView.setImageURI(Uri.parse("drawable/black.png"));
+        black_imageView.setImageURI(Uri.parse("drawable/black_disk.png"));
     }
 
     @Override
@@ -53,7 +52,7 @@ public class DiskAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(R.drawable.black);
+        imageView.setImageResource(R.drawable.black_disk);
         return imageView;
 
     }

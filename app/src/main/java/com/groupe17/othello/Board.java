@@ -1,7 +1,6 @@
 package com.groupe17.othello;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -18,6 +17,9 @@ public class Board extends TableLayout {
     private int side;
     private DiskColor nextColor;
     private int lastBlank;
+
+    private double whitePossession;
+    private double blackPossession;
 
     public Board(Context context) {
         super(context);
@@ -51,11 +53,18 @@ public class Board extends TableLayout {
                     @Override
                     public void onClick(View v) {
                         Disk disk = (Disk) v;
-                        placeDisk(disk);
-                        attackAllDirections(disk);
-
+                        if (placeDisk(disk)) {
+                            attackAllDirections(disk);
+                        } else {
+                            return;
+                        }
                         if (lastBlank == 0) {
-                            Toast.makeText(getContext(), "FINISHED", Toast.LENGTH_SHORT).show();
+                            if (whitePossession > blackPossession) {
+                                new SqliteService(getContext()).addOneGame("white", whitePossession);
+                            } else {
+                                new SqliteService(getContext()).addOneGame("black", blackPossession);
+                            }
+
                             ((GameBoardActivity) getContext()).finish();
                         }
 
@@ -95,6 +104,10 @@ public class Board extends TableLayout {
         int x = disk.getLine() + attackDirection.getX();
         int y = disk.getColumn() + attackDirection.getY();
 
+        if (x < 0 || y < 0 || x >= 8 || y >= 8) {
+            return;
+        }
+
         boolean canAttack = false;
         int numberOfVictims = 0;
 
@@ -112,6 +125,10 @@ public class Board extends TableLayout {
 
             x += attackDirection.getX();
             y += attackDirection.getY();
+
+            if (x < 0 || y < 0 || x >= 8 || y >= 8) {
+                return;
+            }
         }
 
         x = disk.getLine() + attackDirection.getX();
@@ -127,12 +144,14 @@ public class Board extends TableLayout {
         }
     }
 
-    private void placeDisk(Disk disk) {
+    private boolean placeDisk(Disk disk) {
         if  (!canMove(disk)) {
-            return;
+            return false;
         }
 
         simplePlaceDisk(disk);
+
+        return true;
     }
 
     private void simplePlaceDisk(Disk disk) {
@@ -188,31 +207,31 @@ public class Board extends TableLayout {
     }
 
     private void updatePossessions() {
-        double white = 0;
-        double black = 0;
+        whitePossession = 0;
+        blackPossession = 0;
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 switch(getDiskAt(i, j).getColor()) {
                     case White:
-                        white++;
+                        whitePossession++;
                         break;
                     case Black:
-                        black++;
+                        blackPossession++;
                         break;
                 }
             }
         }
 
-        double sum = white + black;
+        double sum = whitePossession + blackPossession;
 
-        white = Math.ceil(100 * (white / sum));
-        black = 100 - white;
+        whitePossession = Math.ceil(100 * (whitePossession / sum));
+        blackPossession = 100 - whitePossession;
 
         TextView whitePossession_label = ((GameBoardActivity) getContext()).findViewById(R.id.whitePossession_label);
         TextView blackPossession_label = ((GameBoardActivity) getContext()).findViewById(R.id.blackPossession_label);
 
-        whitePossession_label.setText(white + " %");
-        blackPossession_label.setText(black + " %");
+        whitePossession_label.setText(whitePossession + " %");
+        blackPossession_label.setText(blackPossession + " %");
     }
 }

@@ -1,7 +1,6 @@
 package com.groupe17.othello;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.TableRow;
 
 public class Disk extends android.support.v7.widget.AppCompatImageView {
@@ -36,10 +35,10 @@ public class Disk extends android.support.v7.widget.AppCompatImageView {
 
         switch (color) {
             case White:
-                setImageResource(R.drawable.white);
+                setImageResource(R.drawable.white_disk);
                 break;
             case Black:
-                setImageResource(R.drawable.black);
+                setImageResource(R.drawable.black_disk);
                 break;
         }
     }

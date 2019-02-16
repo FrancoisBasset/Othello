@@ -18,7 +18,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".NewGameActivity" />
-        <activity android:name=".GameBoardActivity"></activity>
+        <activity android:name=".GameBoardActivity" />
+        <activity
+            android:name=".LastGamesActivity"
+            android:label="@string/whiteDisk_label"
+            android:theme="@style/Othello"></activity>
     </application>
 
 </manifest>
