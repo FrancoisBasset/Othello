@@ -1,10 +1,8 @@
 package com.groupe17.othello;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startNewGameActivity() {
-        Intent intent = new Intent(this, NewGameActivity.class);
+        Intent intent = new Intent(this, GameBoardActivity.class);
         startActivity(intent);
     }
 

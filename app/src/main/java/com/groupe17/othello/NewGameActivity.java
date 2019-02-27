@@ -21,13 +21,6 @@ public class NewGameActivity extends AppCompatActivity {
             }
         });
 
-        Button randomPlayer_button = findViewById(R.id.randomPlayer_button);
-        randomPlayer_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startGameBoardActivity(v, "random");
-            }
-        });
     }
 
     public void startGameBoardActivity(View v, String mode) {

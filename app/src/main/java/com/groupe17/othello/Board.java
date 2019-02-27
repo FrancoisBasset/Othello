@@ -9,7 +9,6 @@ import android.view.WindowManager;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import static android.content.Context.WINDOW_SERVICE;
 
@@ -44,6 +43,9 @@ public class Board extends TableLayout {
         side = Integer.valueOf(side / 8);
         lastBlank = 64;
 
+        TextView turn = ((GameBoardActivity) getContext()).findViewById(R.id.turn);
+        turn.setText("Au tour du pion noir");
+
         for (int line = 0; line < 8; line++) {
             TableRow row = new TableRow(getContext());
 
@@ -61,8 +63,10 @@ public class Board extends TableLayout {
                         if (lastBlank == 0) {
                             if (whitePossession > blackPossession) {
                                 new SqliteService(getContext()).addOneGame("white", whitePossession);
+                                new FirestoreService(getContext()).put("white", whitePossession);
                             } else {
                                 new SqliteService(getContext()).addOneGame("black", blackPossession);
+                                new FirestoreService(getContext()).put("black", blackPossession);
                             }
 
                             ((GameBoardActivity) getContext()).finish();
@@ -169,8 +173,14 @@ public class Board extends TableLayout {
     private void switchNextColor() {
         if (nextColor == DiskColor.Black) {
             nextColor = DiskColor.White;
+
+            TextView turn = ((GameBoardActivity) getContext()).findViewById(R.id.turn);
+            turn.setText("Au tour du pion blanc");
         } else {
             nextColor = DiskColor.Black;
+
+            TextView turn = ((GameBoardActivity) getContext()).findViewById(R.id.turn);
+            turn.setText("Au tour du pion noir");
         }
     }
 

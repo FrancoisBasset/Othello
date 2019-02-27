@@ -56,6 +56,4 @@ public class DiskAdapter extends BaseAdapter {
         return imageView;
 
     }
-
-    //public void addDisk()
 }
